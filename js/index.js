@@ -39,8 +39,27 @@ const jsonData = `
 `;
 
 //Recorrer el JSON e insertar en el listado del html los nombres de los miembros
+
+
 function recorrerMiembros() {
-    //escribe la lógica
+    const miembros = JSON.parse(jsonData).members
+    miembros.forEach((miembro, i) => {
+        renderizarMiembro(miembro, i + 1);
+    });
 
 };
+
+function renderizarMiembro(miembro, id) {
+    const miembros = document.querySelector("ul");
+    const template = `
+      <li class="member" id=\"member-${id}\">
+        <h3>${miembro.name}</h3>
+        <div>Edad: ${miembro.age}</div>
+        <div>Identidad Secreta: ${miembro.secretIdentity}</div>
+        
+      </li>
+  `;
+    miembros.innerHTML += template;
+
+}
 recorrerMiembros();
